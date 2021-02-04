@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- ================ Inner banner ================ -->
+<div class="inner-banner inner-banner-bg pt-70 pb-40">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8 col-md-8 mb-30"> 
+        <!-- page-title -->
+        <div class="page-title">
+          <h1>Detail Page</h1>
+        </div>
+        <!-- page-title end --> 
+      </div>
+      <div class="col-lg-4 col-md-4 mb-30"> 
+        <!-- breadcrumb -->
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Detail Page</li>
+        </ol>
+        <!-- breadcrumb end --> 
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ================ Inner banner end ================ --> 
+
+
+<!-- ================ Detail page ================ -->
+<div class="detail-page pt-70 pb-40">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-8">
+        <div class="title">
+          <h2>{{object.parking_area_name}}</h2>
+          <p>{{object.parking_location}}</p>
+        </div>
+        <!-- detail page gallery -->
+        <div class="owl-carousel detail-page-gallery-carousel mb-20">
+          <figure class="item mb-0"> <img src="{{object.parking_picture.url}}" alt="img description"> </figure>
+        
+        </div>
+        <!-- detail page gallery end --> 
+        <!-- tabs -->
+        <div class="detail-tabs mb-30">
+          <ul class="nav nav-tabs nav-pills nav-justified" id="myTab" role="tablist">
+            <li class="nav-item"> <a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Overview</a> </li>
+            
+            <li class="nav-item"> <a class="nav-link" id="tab3-tab" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Parking slots</a> </li>
+
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active p-15" id="tab1" role="tabpanel" aria-labelledby="tab1-tab"> 
+              <!-- overview -->
+              <h4 class="mb-6">Overview</h4>
+              <p>{{object.parking_overview}}</p>
+              
+              <!-- overview end --> 
+            </div>
+           
+            <div class="tab-pane fade p-15" id="tab3" role="tabpanel" aria-labelledby="tab3-tab"> 
+              <!-- rooms -->
+              <h4 class="mb-6">Parking slots</h4>
+              <div class="room-type-wrapper"> 
+                <!-- list box -->
+                {% if parking_slots  %}
+                {% for j in  parking_slots %}
+                {% if j.parking_id.id == object.id %}
+                 {% if j.booked == False %}
+                <div class="list-box mb-30">
+                 <div class="list-box-img"> <a href="{{j.parking_picture.url}}" class="venobox" data-gall="gallery2"> <img src="{{j.parking_picture.url}}" alt=""></a> <a href="{{j.parking_picture.url}}" class="venobox" data-gall="gallery2"></a> <a href="{{j.parking_picture.url}}" class="venobox" data-gall="gallery2"></a> <a href="{{j.parking_picture.url}}" class="venobox" data-gall="gallery2"></a>
+                      
+                    
+                  </div>
+                  <div class="list-box-content">
+                    <div class="list-box-title">
+                      <h3>{{object.parking_area_name}}<span>Ksh{{object.parking_cost_per_hour}} <em>/ night</em></span></h3>
+                      
+                    </div>
+                    <ul class="hotel-featured">
+                       {% if object.parking_facility == 'PR' %}
+                        <li><span><i class="fas fa-car"></i>Parking Facility</span></li>
+                        {% else %}
+                        <li><span><i class="fas fa-car"></i>Open Space</span></li>
+                        {% endif %}
+                        {% if object.security_inclusive %}
+                        <li><span><i class="fas fa-shield-alt"></i> Security inclusive</span></li>
+                        {% endif %}
+                        {% if object.carwash_available %}
+                        <li><span><i class="fas fa-car"></i> Carwash availabe</span></li>
+                        {% endif %}
+                        {% if object.nearby_restaurant %}
+                        <li><span><i class="fas fa-coffee"></i>Near restaurant Available</span></li>
+                    {% endif %}
+                    </ul>
+                    <form method ='POST' action = '{% url "mainapp:customerdetails" %}' class="form">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{j.id}}" />
+                    <button type="Submit" class="book-now-btn ml-6" ><a  >Book Now</a> </button>
+                  </form>
+                  
+                  </div>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                <!-- list box end --> 
+                <!-- list box -->
+              
+              </div>
+              <!-- rooms --> 
+            </div>
+         
+          </div>
+        </div>
+        <!-- tabs end --> 
+      </div>
+      <div class="col-lg-4 col-md-4">
+        <aside> 
+          <!-- filter widget -->
+          <div class="filter-widget mb-20">
+            <div class="accordion filter-accordion" id="filter-widget-accordion4-d">
+              <div class="card">
+                <div class="card-header" id="headingOne4-d"> <a class="btn btn-link w-100 text-left" href="" data-toggle="collapse" data-target="#collapseOne4-m" aria-expanded="true" aria-controls="collapseOne4-m"> 
+                  <!-- title widget -->
+                  <div class="filter-title-widget">
+                    <h3>Payment Details <i class="fas fa-plus-square float-right"></i> <i class="fas fa-minus-square float-right"></i></h3>
+                  </div>
+                  <!-- title widget end --> 
+                  </a> </div>
+                <div id="collapseOne4-m" class="collapse show mt-10" aria-labelledby="headingOne4-d" data-parent="#filter-widget-accordion4-d">
+                  <div class="card-body">
+                    
+                    <div class="table-responsive">
+                      <table class="table table-bordered bg-gray w-100 border-0">
+                        <tr>
+                          <td>Mpesa Paybill</td>
+                          <td>12345</td>
+                        </tr>
+                        <tr>
+                          <td>Paypal</td>
+                          <td>feliciaomolo@gmail.com</td>
+                        </tr>
+                        <tr>
+                          <td>Visa/mastercard</td>
+                         
+                        </tr>
+                      </table>
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- filter widget end --> 
+          <!-- help us -->
+         
+           
+          <!-- help us end --> 
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ================ Detail page end ================ --> 
+
+{% endblock content %}

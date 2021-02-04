@@ -1,0 +1,74 @@
+{% load static %}
+
+
+<!-- ================ Header ================ -->
+<header class="header"> 
+  <!-- header upper -->
+  <div class="header-upper-bar">
+    <div class="container">
+      <div class="row d-flex align-items-center">
+        <div class="col-lg-8 col-md-6 col-sm-4 col-2"> 
+          <!-- header navigation -->
+          <nav class="navbar header-navigation navbar-expand-lg p-0"> 
+            <!-- mobile Toggle -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTheme" aria-controls="navbarTheme" aria-expanded="false" aria-label="Toggle navigation"> <span></span> <span></span> <span></span> </button>
+            <!-- mobile toggle end --> 
+            <!-- top Menu -->
+            <div class="collapse navbar-collapse" id="navbarTheme">
+              <ul class="navbar-nav align-items-start align-items-lg-center">
+                <li><a class="nav-link" href="/">Home</a></li>
+                
+                <li><a class="nav-link" href="{% url "mainapp:contact_us" %}">Contact Us</a></li>
+              </ul>
+            </div>
+            <!-- top menu end --> 
+          </nav>
+          <!-- header navigation end --> 
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-8 col-10 text-right"> 
+          <!-- header right link -->
+          
+          <!-- header right link end --> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- header upper end --> 
+  <!-- header lover -->
+  <div class="header-lover">
+    <div class="container">
+      <div class="row align-items-center">
+        {% comment %} <div class="col-lg-3 col-md-12"> 
+          <!-- brand -->
+          <div class="logo"><a class="navbar-brand p-0" href="/"><img src="{% static 'img/logo.png' %}" alt=""></a></div>
+          <!-- brand end --> 
+        </div> {% endcomment %}
+        <div class="col-lg-9 col-md-12"> 
+          <!-- header call us -->
+          <div class="header-call-us">
+            <ul>
+             
+              <li>
+                <div class="iocn-holder"><i class="fas fa-phone-volume"></i></div>
+                <div class="text-holder">
+                  <h6>Call Us</h6>
+                  <p class="mb-0"><a href="tel:123456789">+011 123 4567</a></p>
+                </div>
+              </li>
+              <li>
+                <div class="iocn-holder"><i class="far fa-envelope"></i></div>
+                <div class="text-holder">
+                  <h6>Mail Us</h6>
+                  <p class="mb-0"><a href="mailto:info@exampal.com">info@exampal.com</a></p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- header call us end --> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- header lover end --> 
+</header>
+<!-- ================ Header end ================ --> 
