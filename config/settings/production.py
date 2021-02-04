@@ -20,20 +20,20 @@ DATABASES = {
 
 
 #Email backends
-EMIAL_BACKEND = 'ambetsaachongo@gmail.com'
-EMAIL_HOST_USER = 'ambetsaachongo@gmail.com'
+EMIAL_BACKEND = ''
+EMAIL_HOST_USER = ''
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-EMAIL_HOST_PASSWORD = 'Lyrics254'
+EMAIL_HOST_PASSWORD = ''
 
 
 
 #Production
-AWS_ACCESS_KEY_ID = 'AKIA3T7FB5INOG27IH5T'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'handlings254'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
+AWS_STORAGE_BUCKET_NAME = ''
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
